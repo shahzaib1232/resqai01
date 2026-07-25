@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmergencyGuideIndexRouteImport } from './routes/emergency-guide/index'
+import { Route as EmergencyGuideSlugRouteImport } from './routes/emergency-guide/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const EmergencyGuideIndexRoute = EmergencyGuideIndexRouteImport.update({
   path: '/emergency-guide/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmergencyGuideSlugRoute = EmergencyGuideSlugRouteImport.update({
+  id: '/emergency-guide/$slug',
+  path: '/emergency-guide/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide': typeof EmergencyGuideIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/emergency-guide/'
+  fullPaths: '/' | '/emergency-guide/$slug' | '/emergency-guide/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/emergency-guide'
-  id: '__root__' | '/' | '/emergency-guide/'
+  to: '/' | '/emergency-guide/$slug' | '/emergency-guide'
+  id: '__root__' | '/' | '/emergency-guide/$slug' | '/emergency-guide/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmergencyGuideSlugRoute: typeof EmergencyGuideSlugRoute
   EmergencyGuideIndexRoute: typeof EmergencyGuideIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmergencyGuideIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/emergency-guide/$slug': {
+      id: '/emergency-guide/$slug'
+      path: '/emergency-guide/$slug'
+      fullPath: '/emergency-guide/$slug'
+      preLoaderRoute: typeof EmergencyGuideSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmergencyGuideSlugRoute: EmergencyGuideSlugRoute,
   EmergencyGuideIndexRoute: EmergencyGuideIndexRoute,
 }
 export const routeTree = rootRouteImport

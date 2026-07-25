@@ -4,6 +4,7 @@ import { AlertTriangle, Ban, CheckCircle2, Phone, ShieldPlus, Stethoscope } from
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { Button } from "@/components/ui/button";
+import type { EmergencyNumber } from "@/lib/emergency-modules";
 import { EMERGENCY_MODULES, getModule } from "@/lib/emergency-modules";
 
 export const Route = createFileRoute("/emergency-guide/$slug")({
@@ -167,7 +168,7 @@ function ModulePage() {
                 <h2 className="heading-console text-lg tracking-wide">Emergency numbers</h2>
               </div>
               <ul className="mt-4 space-y-3">
-                {module.numbers.map((n) => (
+                {module.numbers.map((n: EmergencyNumber) => (
                   <li key={`${n.label}-${n.number}`} className="flex items-center justify-between gap-4">
                     <span className="text-sm text-muted-foreground">{n.label}</span>
                     <span className="font-mono text-sm font-medium text-foreground">
