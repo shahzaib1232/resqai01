@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -26,6 +27,11 @@ import { Route as AuthenticatedAssistantRouteImport } from './routes/_authentica
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/features': typeof FeaturesRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/assistant': typeof AuthenticatedAssistantRoute
   '/community': typeof AuthenticatedCommunityRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/features': typeof FeaturesRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/assistant': typeof AuthenticatedAssistantRoute
   '/community': typeof AuthenticatedCommunityRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/features': typeof FeaturesRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/community': typeof AuthenticatedCommunityRoute
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/features'
     | '/privacy'
+    | '/sitemap.xml'
     | '/terms'
     | '/assistant'
     | '/community'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/features'
     | '/privacy'
+    | '/sitemap.xml'
     | '/terms'
     | '/assistant'
     | '/community'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/features'
     | '/privacy'
+    | '/sitemap.xml'
     | '/terms'
     | '/_authenticated/assistant'
     | '/_authenticated/community'
@@ -186,6 +198,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FeaturesRoute: typeof FeaturesRoute
   PrivacyRoute: typeof PrivacyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   EmergencyGuideSlugRoute: typeof EmergencyGuideSlugRoute
   EmergencyGuideIndexRoute: typeof EmergencyGuideIndexRoute
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -310,6 +330,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FeaturesRoute: FeaturesRoute,
   PrivacyRoute: PrivacyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   EmergencyGuideSlugRoute: EmergencyGuideSlugRoute,
   EmergencyGuideIndexRoute: EmergencyGuideIndexRoute,
