@@ -22,7 +22,8 @@ import { Route as EmergencyGuideIndexRouteImport } from './routes/emergency-guid
 import { Route as EmergencyGuideSlugRouteImport } from './routes/emergency-guide/$slug'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCommunityRouteImport } from './routes/_authenticated/community'
-import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
+import { Route as AuthenticatedAssistantIndexRouteImport } from './routes/_authenticated/assistant/index'
+import { Route as AuthenticatedAssistantConversationIdRouteImport } from './routes/_authenticated/assistant/$conversationId'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -88,11 +89,18 @@ const AuthenticatedCommunityRoute = AuthenticatedCommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedAssistantRoute = AuthenticatedAssistantRouteImport.update({
-  id: '/assistant',
-  path: '/assistant',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedAssistantIndexRoute =
+  AuthenticatedAssistantIndexRouteImport.update({
+    id: '/assistant/',
+    path: '/assistant/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAssistantConversationIdRoute =
+  AuthenticatedAssistantConversationIdRouteImport.update({
+    id: '/assistant/$conversationId',
+    path: '/assistant/$conversationId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,11 +111,12 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/assistant': typeof AuthenticatedAssistantRoute
   '/community': typeof AuthenticatedCommunityRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
+  '/assistant/$conversationId': typeof AuthenticatedAssistantConversationIdRoute
+  '/assistant/': typeof AuthenticatedAssistantIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,11 +127,12 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/assistant': typeof AuthenticatedAssistantRoute
   '/community': typeof AuthenticatedCommunityRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide': typeof EmergencyGuideIndexRoute
+  '/assistant/$conversationId': typeof AuthenticatedAssistantConversationIdRoute
+  '/assistant': typeof AuthenticatedAssistantIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -135,11 +145,12 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/community': typeof AuthenticatedCommunityRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
+  '/_authenticated/assistant/$conversationId': typeof AuthenticatedAssistantConversationIdRoute
+  '/_authenticated/assistant/': typeof AuthenticatedAssistantIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -152,11 +163,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
-    | '/assistant'
     | '/community'
     | '/dashboard'
     | '/emergency-guide/$slug'
     | '/emergency-guide/'
+    | '/assistant/$conversationId'
+    | '/assistant/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -167,11 +179,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
-    | '/assistant'
     | '/community'
     | '/dashboard'
     | '/emergency-guide/$slug'
     | '/emergency-guide'
+    | '/assistant/$conversationId'
+    | '/assistant'
   id:
     | '__root__'
     | '/'
@@ -183,11 +196,12 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
-    | '/_authenticated/assistant'
     | '/_authenticated/community'
     | '/_authenticated/dashboard'
     | '/emergency-guide/$slug'
     | '/emergency-guide/'
+    | '/_authenticated/assistant/$conversationId'
+    | '/_authenticated/assistant/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -297,26 +311,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCommunityRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/assistant': {
-      id: '/_authenticated/assistant'
+    '/_authenticated/assistant/': {
+      id: '/_authenticated/assistant/'
       path: '/assistant'
-      fullPath: '/assistant'
-      preLoaderRoute: typeof AuthenticatedAssistantRouteImport
+      fullPath: '/assistant/'
+      preLoaderRoute: typeof AuthenticatedAssistantIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/assistant/$conversationId': {
+      id: '/_authenticated/assistant/$conversationId'
+      path: '/assistant/$conversationId'
+      fullPath: '/assistant/$conversationId'
+      preLoaderRoute: typeof AuthenticatedAssistantConversationIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAssistantRoute: typeof AuthenticatedAssistantRoute
   AuthenticatedCommunityRoute: typeof AuthenticatedCommunityRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedAssistantConversationIdRoute: typeof AuthenticatedAssistantConversationIdRoute
+  AuthenticatedAssistantIndexRoute: typeof AuthenticatedAssistantIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAssistantRoute: AuthenticatedAssistantRoute,
   AuthenticatedCommunityRoute: AuthenticatedCommunityRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedAssistantConversationIdRoute:
+    AuthenticatedAssistantConversationIdRoute,
+  AuthenticatedAssistantIndexRoute: AuthenticatedAssistantIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
