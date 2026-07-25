@@ -107,6 +107,13 @@ function ConversationPage() {
             ),
           )}
 
+          {send.isPending && send.variables && (
+            <div className="border border-border bg-panel p-5">
+              <p className="label-mono">You reported</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground">{send.variables}</p>
+            </div>
+          )}
+
           {send.isPending && (
             <p className="flex items-center gap-2 font-mono text-[11px] text-primary">
               <Loader2 className="size-3.5 animate-spin" aria-hidden />
