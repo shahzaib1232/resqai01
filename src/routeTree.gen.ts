@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmergencyGuideIndexRouteImport } from './routes/emergency-guide/index'
 import { Route as EmergencyGuideSlugRouteImport } from './routes/emergency-guide/$slug'
@@ -17,6 +18,11 @@ import { Route as EmergencyGuideSlugRouteImport } from './routes/emergency-guide
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +43,14 @@ const EmergencyGuideSlugRoute = EmergencyGuideSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/features': typeof FeaturesRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/features': typeof FeaturesRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide': typeof EmergencyGuideIndexRoute
@@ -50,18 +58,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/features': typeof FeaturesRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/features' | '/emergency-guide/$slug' | '/emergency-guide/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/features'
+    | '/emergency-guide/$slug'
+    | '/emergency-guide/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/features' | '/emergency-guide/$slug' | '/emergency-guide'
+  to:
+    | '/'
+    | '/about'
+    | '/features'
+    | '/emergency-guide/$slug'
+    | '/emergency-guide'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/features'
     | '/emergency-guide/$slug'
     | '/emergency-guide/'
@@ -69,6 +89,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   FeaturesRoute: typeof FeaturesRoute
   EmergencyGuideSlugRoute: typeof EmergencyGuideSlugRoute
   EmergencyGuideIndexRoute: typeof EmergencyGuideIndexRoute
@@ -81,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/features'
       fullPath: '/features'
       preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -109,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   FeaturesRoute: FeaturesRoute,
   EmergencyGuideSlugRoute: EmergencyGuideSlugRoute,
   EmergencyGuideIndexRoute: EmergencyGuideIndexRoute,
