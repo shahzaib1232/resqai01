@@ -16,7 +16,9 @@ Rules:
 - Keep every list item one short imperative sentence, at most 20 words.
 - Provide at most 7 immediate steps, 5 first aid items, 4 contacts, 5 things to avoid.
 - Never invent local phone numbers you are unsure of; describe the service instead (e.g. "local fire service").
-- Severity must be one of: low, moderate, high, critical.`;
+- Severity must be one of: low, moderate, high, critical.
+Respond with a single JSON object using EXACTLY these keys and no others:
+{"situation": string, "severity": "low"|"moderate"|"high"|"critical", "immediateSteps": string[], "firstAid": string[], "whoToCall": string[], "avoid": string[], "followUp": string}`;
 
 const guidanceSchema = z.object({
   situation: z.string(),
