@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -16,6 +17,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmergencyGuideIndexRouteImport } from './routes/emergency-guide/index'
 import { Route as EmergencyGuideSlugRouteImport } from './routes/emergency-guide/$slug'
 
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/features': typeof FeaturesRoute
+  '/privacy': typeof PrivacyRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/features': typeof FeaturesRoute
+  '/privacy': typeof PrivacyRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide': typeof EmergencyGuideIndexRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/features': typeof FeaturesRoute
+  '/privacy': typeof PrivacyRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/features'
+    | '/privacy'
     | '/emergency-guide/$slug'
     | '/emergency-guide/'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/features'
+    | '/privacy'
     | '/emergency-guide/$slug'
     | '/emergency-guide'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/features'
+    | '/privacy'
     | '/emergency-guide/$slug'
     | '/emergency-guide/'
   fileRoutesById: FileRoutesById
@@ -104,12 +116,20 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   FeaturesRoute: typeof FeaturesRoute
+  PrivacyRoute: typeof PrivacyRoute
   EmergencyGuideSlugRoute: typeof EmergencyGuideSlugRoute
   EmergencyGuideIndexRoute: typeof EmergencyGuideIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/features': {
       id: '/features'
       path: '/features'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   FeaturesRoute: FeaturesRoute,
+  PrivacyRoute: PrivacyRoute,
   EmergencyGuideSlugRoute: EmergencyGuideSlugRoute,
   EmergencyGuideIndexRoute: EmergencyGuideIndexRoute,
 }
