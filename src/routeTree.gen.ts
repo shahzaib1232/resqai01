@@ -20,6 +20,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmergencyGuideIndexRouteImport } from './routes/emergency-guide/index'
 import { Route as EmergencyGuideSlugRouteImport } from './routes/emergency-guide/$slug'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -75,6 +76,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAssistantRoute = AuthenticatedAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/features': typeof FeaturesRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/features': typeof FeaturesRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide': typeof EmergencyGuideIndexRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/features': typeof FeaturesRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/emergency-guide/$slug': typeof EmergencyGuideSlugRoute
   '/emergency-guide/': typeof EmergencyGuideIndexRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/features'
     | '/privacy'
     | '/terms'
+    | '/assistant'
     | '/dashboard'
     | '/emergency-guide/$slug'
     | '/emergency-guide/'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/features'
     | '/privacy'
     | '/terms'
+    | '/assistant'
     | '/dashboard'
     | '/emergency-guide/$slug'
     | '/emergency-guide'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/features'
     | '/privacy'
     | '/terms'
+    | '/_authenticated/assistant'
     | '/_authenticated/dashboard'
     | '/emergency-guide/$slug'
     | '/emergency-guide/'
@@ -246,14 +258,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/assistant': {
+      id: '/_authenticated/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AuthenticatedAssistantRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAssistantRoute: typeof AuthenticatedAssistantRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAssistantRoute: AuthenticatedAssistantRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
 }
 
