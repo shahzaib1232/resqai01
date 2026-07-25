@@ -69,7 +69,7 @@ export function Composer({
               onClick={() => setValue(m.assistantPrompt)}
               className="border border-border px-3 py-2 text-left text-[11px] leading-snug text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
             >
-              {m.label}
+              {m.name}
             </button>
           ))}
         </div>
