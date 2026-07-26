@@ -13,7 +13,9 @@ import { supabase } from "@/integrations/supabase/client";
 const searchSchema = z.object({
   redirect: z.string().optional(),
 });
-
+export const Route = createFileRoute("/auth")({
+  component: () => <div>Auth Page</div>,
+});
 export const Route = createFileRoute("/auth")({
   ssr: false,
   validateSearch: searchSchema,
