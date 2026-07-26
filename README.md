@@ -181,20 +181,90 @@ https://resqai01.vercel.app
 ```text
 resqai01/
 │
+├── .lovable/
+│   └── project.json
+│
 ├── public/
+│   ├── favicon.ico
+│   └── robots.txt
+│
 ├── src/
+│   ├── assets/
+│   │   └── radar-terrain.jpg
+│   │
 │   ├── components/
+│   │   ├── assistant/
+│   │   ├── console/
+│   │   │   └── ConsoleShell.tsx
+│   │   ├── site/
+│   │   │   ├── SiteFooter.tsx
+│   │   │   └── SiteHeader.tsx
+│   │   └── ui/
+│   │       ├── accordion.tsx
+│   │       ├── alert-dialog.tsx
+│   │       ├── alert.tsx
+│   │       ├── avatar.tsx
+│   │       ├── button.tsx
+│   │       ├── calendar.tsx
+│   │       ├── card.tsx
+│   │       ├── carousel.tsx
+│   │       ├── chart.tsx
+│   │       ├── checkbox.tsx
+│   │       ├── dialog.tsx
+│   │       ├── drawer.tsx
+│   │       ├── dropdown-menu.tsx
+│   │       ├── form.tsx
+│   │       ├── input.tsx
+│   │       ├── label.tsx
+│   │       ├── menubar.tsx
+│   │       ├── navigation-menu.tsx
+│   │       ├── pagination.tsx
+│   │       ├── popover.tsx
+│   │       ├── progress.tsx
+│   │       ├── radio-group.tsx
+│   │       ├── resizable.tsx
+│   │       ├── scroll-area.tsx
+│   │       ├── select.tsx
+│   │       ├── separator.tsx
+│   │       ├── sheet.tsx
+│   │       ├── sidebar.tsx
+│   │       ├── skeleton.tsx
+│   │       ├── sonner.tsx
+│   │       ├── switch.tsx
+│   │       ├── table.tsx
+│   │       ├── tabs.tsx
+│   │       ├── textarea.tsx
+│   │       ├── toggle-group.tsx
+│   │       ├── toggle.tsx
+│   │       └── tooltip.tsx
+│   │
+│   ├── hooks/
 │   ├── integrations/
 │   ├── lib/
 │   ├── routes/
-│   └── ...
+│   │   └── routeTree.gen.ts
+│   ├── router.tsx
+│   ├── server.ts
+│   ├── start.ts
+│   └── styles.css
 │
 ├── supabase/
+│   ├── migrations/
+│   │   ├── 20260725161147_e64312c7-1056-4aea-8f05-4d5fcf7b785a.sql
+│   │   └── 20260725161212_facd2d82-f255-4428-915d-ecfff6cce40c.sql
+│   └── config.toml
+│
+├── .env
 ├── .gitignore
-├── package.json
-├── package-lock.json
-├── tsconfig.json
-├── vite.config.ts
-├── eslint.config.js
+├── .prettierignore
+├── .prettierrc
+├── AGENTS.md
+├── README.md
+├── bun.lock
+├── bunfig.toml
 ├── components.json
-└── README.md
+├── eslint.config.js
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
