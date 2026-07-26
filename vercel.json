@@ -9,11 +9,3 @@
     }
   }
 }
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ]
-}
