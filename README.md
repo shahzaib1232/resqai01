@@ -176,6 +176,25 @@ https://resqai01.vercel.app
 
 ---
 
+## 🔑 Environment Variables
+
+The application requires environment variables for Supabase configuration.
+
+For local development, create a `.env` file using `.env.example` as a template.
+
+### Required Variables
+
+```env
+SUPABASE_PROJECT_ID=your_project_id
+SUPABASE_PUBLISHABLE_KEY=your_publishable_key
+SUPABASE_URL=your_supabase_url
+
+VITE_SUPABASE_PROJECT_ID=your_project_id
+VITE_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
+VITE_SUPABASE_URL=your_supabase_url
+
+---
+
 ## 📂 Project Structure
 
 ```text
