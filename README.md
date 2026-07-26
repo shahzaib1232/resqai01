@@ -175,14 +175,39 @@ https://resqai01.vercel.app
 <img width="1876" height="792" alt="image" src="https://github.com/user-attachments/assets/213d983a-3901-41a0-ad88-e48e075f0df1" />
 
 ---
+## 💻 How to Run the Project
 
-## 🔑 Environment Variables
+### Prerequisites
 
-The application requires environment variables for Supabase configuration.
+Before running the project, make sure you have installed:
 
-For local development, create a `.env` file using `.env.example` as a template.
+- Node.js
+- npm
+- Git
 
-### Required Variables
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/shahzaib1232/resqai01.git
+```
+
+### 2. Navigate to the Project Directory
+
+```bash
+cd resqai01
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure Environment Variables
+
+Create a `.env` file using `.env.example` as a reference and add the required Supabase configuration.
+
+#### Required Variables
 
 ```env
 SUPABASE_PROJECT_ID=your_project_id
@@ -192,8 +217,17 @@ SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_PROJECT_ID=your_project_id
 VITE_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
 VITE_SUPABASE_URL=your_supabase_url
+```
 
----
+> **Security Notice:** Never upload actual API keys or private credentials to GitHub. Production environment variables are configured securely in Vercel.
+
+### 5. Start the Development Server
+
+```bash
+npm run dev
+```
+
+The application will start on the local development server.
 
 ## 📂 Project Structure
 
