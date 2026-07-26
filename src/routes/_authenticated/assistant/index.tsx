@@ -13,9 +13,7 @@ import {
   deleteConversation,
   listConversations,
 } from "@/lib/assistant.functions";
-export const Route = createFileRoute("/assistant")({
-  component: () => <div>Assistant Page</div>,
-});
+
 export const Route = createFileRoute("/_authenticated/assistant/")({
   validateSearch: z.object({ q: z.string().max(2000).optional() }),
   head: () => ({
