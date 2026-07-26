@@ -142,11 +142,11 @@ The project was developed and deployed using:
 
 The application is deployed and publicly accessible at:
 
-🔗 **[Visit ResQAI](https://resqai01-o8zxwcvev-acme-b32a.vercel.app/)**
+🎨 **Lovable Project:**
+https://resqai01.lovable.app
 
-**Live URL:**  
-https://resqai01.vercel.app
-
+🔗 **Vercel (Production):**
+resqai001.vercel.app
 ---
 
 ## 📸 Screenshots
