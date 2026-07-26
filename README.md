@@ -146,7 +146,7 @@ The application is deployed and publicly accessible at:
 https://resqai01.lovable.app
 
 🔗 **Vercel (Production):**
-resqai001.vercel.app
+https://resqai001.vercel.app
 ---
 
 ## 📸 Screenshots
