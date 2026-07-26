@@ -2,7 +2,7 @@
 
 > An AI-powered emergency and disaster response platform designed to provide fast, structured, and accessible assistance during critical situations.
 
----
+--
 
 ## 📌 Table of Contents
 
