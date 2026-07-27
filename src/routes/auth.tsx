@@ -126,21 +126,30 @@ function AuthPage() {
 
   async function onGoogle() {
     setPending(true);
-   const { error } = await supabase.auth.signInWithOAuth({
-  provider: "google",
-  options: {
-    redirectTo: window.location.origin,
-  },
-});
+    try {
+      // Managed Lovable broker: popup (web_message) in preview, full redirect otherwise.
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
 
-if (error) {
-  toast.error("Google sign-in failed. Try again.");
-  setPending(false);
-  return;
-}
-    if (result.redirected) return;
-    navigate({ to: destination, replace: true });
+      if (result.error) {
+        toast.error("Google sign-in failed. Try again.");
+        setPending(false);
+        return;
+      }
+
+      // Full-page redirect flow: the browser is navigating away.
+      if (result.redirected) return;
+
+      // Popup flow: the session is already set.
+      navigate({ to: destination, replace: true });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Google sign-in failed.";
+      toast.error(message);
+      setPending(false);
+    }
   }
+
 
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
