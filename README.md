@@ -137,6 +137,17 @@ The project was developed and deployed using:
 - **Vercel** — Production deployment and hosting
 
 ---
+## Sign In Instructions
+
+If you cannot sign in directly, please follow these steps:
+
+1. Open the live application.
+2. Click **Sign Up** and create a new account using your email.
+3. Verify your email through the verification link sent to your inbox.
+4. Return to the application and sign in using your registered email and password.
+5. You can now access all application features.
+
+> **Note:** Email verification is required only for the first login. **Google Sign-In is currently not available** in the deployed version.
 
 ## 🌐 Live Application
 
